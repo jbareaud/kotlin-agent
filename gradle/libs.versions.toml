@@ -1,0 +1,39 @@
+# Version catalog is a central place for you to declare and version dependencies
+# https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
+# https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
+
+[versions]
+kotlin = "2.2.20"
+kotlinxDatetime = "0.6.2"
+kotlinxSerializationJSON = "1.8.1"
+kotlinxCoroutines = "1.10.2"
+mordant = "3.0.2"   # https://github.com/ajalt/mordant
+langchain4j = "1.13.0"
+langchain4jbeta = "1.13.0-beta23"
+classgraph = "4.8.184"  # https://github.com/classgraph/classgraph
+slf4j-simple = "2.0.17"
+shadow = "9.4.1"
+junit = "6.0.3"
+
+[libraries]
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJSON" }
+kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+mordantCore = { module = "com.github.ajalt.mordant:mordant", version.ref = "mordant" }
+mordantCoroutines = { module = "com.github.ajalt.mordant:mordant-coroutines", version.ref = "mordant" }
+mordantMarkdown = { module = "com.github.ajalt.mordant:mordant-markdown", version.ref = "mordant" }
+langchain4j = { module = "dev.langchain4j:langchain4j", version.ref = "langchain4j" }
+langchain4jOllama = { module = "dev.langchain4j:langchain4j-ollama", version.ref = "langchain4j" }
+langchain4jkotlin = { module = "dev.langchain4j:langchain4j-kotlin", version.ref = "langchain4jbeta" }
+classgraph = { module = "io.github.classgraph:classgraph", version.ref = "classgraph" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j-simple" }
+
+[bundles]
+kotlinxEcosystem = ["kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
+mordantEcosystem = ["mordantCore", "mordantCoroutines", "mordantMarkdown"]
+langchain4jEcosystem = ["langchain4j", "langchain4jOllama", "langchain4jkotlin"]
+
+[plugins]
+kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+shadowJar = { id = "com.gradleup.shadow", version.ref = "shadow" }
